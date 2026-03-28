@@ -1,51 +1,53 @@
 # Russia Guide - РОССИЯ ГАЙД
 
-Aplicación multiplataforma (Android, iOS, Windows) para inmigrantes y viajeros en Rusia. Proporciona información vital organizada por capítulos y permite al usuario tomar y almacenar notas propias.
+Multi-platform application (Android, iOS, Windows) for immigrants and travelers in Russia. It provides vital information organized by chapters and allows users to take and store their own notes.
 
 ## Características
 
-- 📚 Capítulos informativos sobre cultura, trámites, idioma, etc.
-- ✍️ Editor de apuntes personales (próximamente)
-- 🧠 Mini quizzes interactivos para aprender ruso
-- 🌙 Modo oscuro (próximamente)
-- 🔍 Búsqueda global (próximamente)
+- 📚 Informative Chapters: Culture, procedures, language, and more.
+- ✍️ Personal Notes Editor: (Coming soon)
+- 🧠 Interactive Quizzes: For learning Russian
+- 🌙 Dark Mode: (Coming soon)
+- 🔍 Global Search: (Coming soon)
 
-## Tecnologías
+## Tech Stack
 
 - Flutter (SDK 3.41+)
 - Dart
 - SQLite (sqflite) para almacenamiento local
 - Material Design 3
 
-## Cómo ejecutar el proyecto
+## Getting Started
 
-1. Clona el repositorio:
+1. Clone the repository:
 
 git clone https://github.com/bricode247/russia_guide.git
 cd russia_guide
 
-2. Obtén las dependencias:
+2. Install dependencies:
 
 flutter pub get
 
-3. Ejecuta la app (por ejemplo, en Chrome):
+3. Run the app:
 
-flutter run -d chrome
+   - On Chrome:
 
-  o en un emulador (Android Studio)
+     flutter run -d chrome
 
-  flutter run
+   - On an emulator or physical device:    
+
+     flutter run
 
   
-## Estado del proyecto
+## Project Status
 
-En desarrollo activo. Actualmente implementados:
+Currently under active development. Implemented features:
 - Splash screen
 - Home screen
-- Menú lateral
-- Capítulo 0: Introducción
-- Capítulo 1: Preparación del viaje
+- Side menu (Drawer)
+- Chapter 0: Introduction
+- Chapter 1: Trip Preparation
 
-## Licencia
+## License
 
 MIT

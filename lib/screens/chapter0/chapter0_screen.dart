@@ -4,7 +4,6 @@ import '../../themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/section_header.dart';
 import '../../widgets/quiz_card.dart';
-import '../../widgets/double_quiz_card.dart';
 import '../../widgets/chapter0/chapter0_widgets.dart'; // todos los demás widgets
 import '../../data/chapter0/chapter0_data.dart';
 import '../../data/chapter0/chapter0_quizzes.dart';
@@ -160,7 +159,9 @@ class Chapter0Screen extends StatelessWidget {
               const SizedBox(height: 24),
               QuizCard(quiz: quiz3),
               const SizedBox(height: 24),
-              DoubleQuizCard(quizA: quiz4a, quizB: quiz4b),
+              QuizCard(quiz: quiz4a),
+              const SizedBox(height: 24),
+              QuizCard(quiz: quiz4b),
               const SizedBox(height: 24),
               QuizCard(quiz: quiz5),
               const SizedBox(height: 40),
