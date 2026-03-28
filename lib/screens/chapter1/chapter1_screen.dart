@@ -18,6 +18,14 @@ class Chapter1Screen extends StatelessWidget {
   final Chapter chapter;
   const Chapter1Screen({super.key, required this.chapter});
 
+  double _getImageHeight(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    if (width >= 1200) return 320; // Escritorio grande
+    if (width >= 800) return 280; // Escritorio pequeño / tablet horizontal
+    if (width >= 600) return 240; // Tablet vertical / móvil grande
+    return 200; // Móvil pequeño
+  }  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,9 +73,11 @@ class Chapter1Screen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(14),
                 child: Image.asset(
                   'assets/images/chapter1/winter_panorama.jpg',
-                  height: 210,
+                  height: _getImageHeight(context),
                   width: double.infinity,
                   fit: BoxFit.cover,
+                  cacheWidth: (MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio).round(),
+                  cacheHeight: (_getImageHeight(context) * MediaQuery.of(context).devicePixelRatio).round(),
                 ),
               ),
 
@@ -86,9 +96,11 @@ class Chapter1Screen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(14),
                 child: Image.asset(
                   'assets/images/chapter1/white_nights_spb.jpg',
-                  height: 190,
+                  height: _getImageHeight(context),
                   width: double.infinity,
                   fit: BoxFit.cover,
+                  cacheWidth: (MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio).round(),
+                  cacheHeight: (_getImageHeight(context) * MediaQuery.of(context).devicePixelRatio).round(),
                 ),
               ),
 
@@ -105,10 +117,12 @@ class Chapter1Screen extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(14),
                 child: Image.asset(
-                  'assets/images/chapter1/russian_passport.jpg',
-                  height: 180,
+                  'assets/images/chapter1/passport.jpg',
+                  height: _getImageHeight(context),
                   width: double.infinity,
                   fit: BoxFit.cover,
+                  cacheWidth: (MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio).round(),
+                  cacheHeight: (_getImageHeight(context) * MediaQuery.of(context).devicePixelRatio).round(),
                 ),
               ),
 
@@ -154,9 +168,11 @@ class Chapter1Screen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(14),
                 child: Image.asset(
                   'assets/images/chapter1/winter_clothing.jpg',
-                  height: 190,
+                  height: _getImageHeight(context),
                   width: double.infinity,
                   fit: BoxFit.cover,
+                  cacheWidth: (MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio).round(),
+                  cacheHeight: (_getImageHeight(context) * MediaQuery.of(context).devicePixelRatio).round(),
                 ),
              ),
 
