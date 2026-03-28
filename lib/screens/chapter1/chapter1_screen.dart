@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import '../../data/chapter1/chapter1_data.dart';
 import '../../data/chapter1/chapter1_quizzes.dart';
-import '../../widgets/photo_placeholder.dart'; // Nuestro placeholder
 import '../../widgets/quiz_card.dart'; // Nuestro quiz card
 import '../../widgets/section_header.dart'; // Nuestro header de sección
 import '../../widgets/chapter1/season_card.dart';
@@ -62,12 +61,15 @@ class Chapter1Screen extends StatelessWidget {
               const SizedBox(height: 20),
  
               // ── FOTO 1: Panorámica invernal de Moscú / San Petersburgo ──
-              PhotoPlaceholder(
-                label: '📸 FOTO: Rusia en invierno — Plaza Roja nevada o San Petersburgo bajo la nieve',
-                suggestion: 'Panorámica invernal que transmita la magnitud y belleza del destino.',
-                height: 210,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(14),
+                child: Image.asset(
+                  'assets/images/chapter1/winter_panorama.jpg',
+                  height: 210,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
-              const SizedBox(height: 40),
 
               // Sección 1: Introducción
               SectionHeader(title: 'La gran aventura empieza en casa', emoji: '🏠'),
@@ -80,12 +82,15 @@ class Chapter1Screen extends StatelessWidget {
               const SizedBox(height: 24),
 
               // ── FOTO 2: Noches Blancas de San Petersburgo ──
-              PhotoPlaceholder(
-                label: '📸 FOTO: Noches Blancas — San Petersburgo en junio a medianoche',
-                suggestion: 'Cielo claro a las 11 PM sobre los canales o la Perspectiva Nevsky.',
-                height: 190,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(14),
+                child: Image.asset(
+                  'assets/images/chapter1/white_nights_spb.jpg',
+                  height: 190,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
-              const SizedBox(height: 32),
 
               // Quiz 1: Invierno
               QuizCard(quiz: quizWinter),
@@ -97,11 +102,15 @@ class Chapter1Screen extends StatelessWidget {
               const SizedBox(height: 24),
 
               // ── FOTO 3: Consulado / Embajada rusa ──
-              PhotoPlaceholder(label: '📸 FOTO: Embajada o Consulado de Rusia — Documentos de visa',
-                suggestion: 'Exterior de una embajada rusa o imagen de pasaporte con visa estampada.',
-                height: 180,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(14),
+                child: Image.asset(
+                  'assets/images/chapter1/russian_passport.jpg',
+                  height: 180,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
-              const SizedBox(height: 32),
 
               // ── QUIZ 2: PASAPORTE ──
               QuizCard(quiz: quizPassport),
@@ -141,12 +150,15 @@ class Chapter1Screen extends StatelessWidget {
               const SizedBox(height: 24),
 
               // Foto 4: Ropa de invierno
-              PhotoPlaceholder(
-                label: '📸 FOTO: Capas de ropa de invierno — Térmica, polar y parka exterior',
-                suggestion: 'Ropa invernal bien equipada. Puede ser persona en calle nevada o tienda.',
-                height: 190,
-              ),
-              const SizedBox(height: 40),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(14),
+                child: Image.asset(
+                  'assets/images/chapter1/winter_clothing.jpg',
+                  height: 190,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+             ),
 
                // Sección 9: Checklist final
               SectionHeader(title: 'Checklist final: ¿listo para salir?', emoji: '✅'),
