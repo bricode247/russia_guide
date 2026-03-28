@@ -69,7 +69,7 @@ class Chapter0Screen extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(14),
                 child: Image.asset(
-                  'assets/images/intro/intro_moscow_panorama.jpg',
+                  'assets/images/chapter0/intro_moscow_panorama.jpg',
                   height: _getImageHeight(context),
                   width: double.infinity,
                   fit: BoxFit.cover, // Ajusta la imagen para cubrir el espacio sin deformarse
@@ -103,7 +103,7 @@ class Chapter0Screen extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(14),
                 child: Image.asset(
-                  'assets/images/intro/intro_moscow_metro.jpg',
+                  'assets/images/chapter0/intro_moscow_metro.jpg',
                   height: _getImageHeight(context),
                   width: double.infinity,
                   fit: BoxFit.cover, // Ajusta la imagen para cubrir el espacio sin deformarse
@@ -124,7 +124,7 @@ class Chapter0Screen extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(14),
                 child: Image.asset(
-                  'assets/images/intro/intro_russian_winter.jpg',
+                  'assets/images/chapter0/intro_russian_winter.jpg',
                   height: _getImageHeight(context),
                   width: double.infinity,
                   fit: BoxFit.cover,
@@ -145,7 +145,7 @@ class Chapter0Screen extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(14),
                 child: Image.asset(
-                  'assets/images/intro/intro_cyrillic_signs.jpg',
+                  'assets/images/chapter0/intro_cyrillic_signs.jpg',
                   height:  _getImageHeight(context),
                   width: double.infinity,
                   fit: BoxFit.cover,
@@ -174,24 +174,11 @@ class Chapter0Screen extends StatelessWidget {
               _buildCulturalShockContent(),
               const SizedBox(height: 24),
 
-              // ── FOTO 5: Mesa con comida rusa ──
-              ClipRRect(
-                borderRadius: BorderRadius.circular(14),
-                child: Image.asset(
-                  'assets/images/intro/intro_russian_food.jpg',
-                  height: _getImageHeight(context),
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  cacheWidth: (MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio).round(),
-                  cacheHeight: (_getImageHeight(context) * MediaQuery.of(context).devicePixelRatio).round(),  
-                ),
-              ),
-
               // ── FOTO 6: Noches blancas de San Petersburgo ──
               ClipRRect(
                 borderRadius: BorderRadius.circular(14),
                 child: Image.asset(
-                  'assets/images/intro/intro_white_nights.jpg',
+                  'assets/images/chapter0/intro_white_nights.jpg',
                   height: _getImageHeight(context),
                   width: double.infinity,
                   fit: BoxFit.cover,
