@@ -21,12 +21,13 @@ Multi-platform application (Android, iOS, Windows) for immigrants and travelers 
 
 1. Clone the repository:
 
-git clone https://github.com/bricode247/russia_guide.git
-cd russia_guide
+   git clone https://github.com/bricode247/russia_guide.git
+
+   cd russia_guide
 
 2. Install dependencies:
 
-flutter pub get
+   flutter pub get
 
 3. Run the app:
 

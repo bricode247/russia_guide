@@ -1,5 +1,5 @@
-import '../models/chapter_model.dart';
-import '../models/note_model.dart';
+import '../../models/chapter_model.dart';
+import '../../models/note_model.dart';
 
 final List<Chapter> mockChapters = [
   Chapter(

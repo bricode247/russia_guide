@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../data/chapters_repository.dart';
-import '../models/chapter_model.dart';
+import '../../data/general_data/chapters_repository.dart';
+import '../../models/chapter_model.dart';
 
 class NextChapterButton extends StatelessWidget {
   final Chapter currentChapter;

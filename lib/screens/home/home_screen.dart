@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../themes/app_colors.dart';
-import '../../widgets/app_drawer.dart'; // Importamos el drawer
-import '../../data/chapters_repository.dart';
+import '../../widgets/general_widgets/app_drawer.dart'; // Importamos el drawer
+import '../../data/general_data/chapters_repository.dart';
 import '../../models/note_model.dart';
 
 class HomeScreen extends StatefulWidget {

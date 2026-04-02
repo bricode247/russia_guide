@@ -82,7 +82,7 @@ const List<Map<String, String>> culturalShocks = [
 
 // Lista de capítulos de la app (para la sección "Cómo usar la guía")
 const List<List<String>> appChapters = [
-  ['🚇', 'Capítulo 1', 'Transporte y metro'],
+  ['🏠', 'Capítulo 1', 'Desde tu casa hasta el aeropuerto'],
   ['🏠', 'Capítulo 2', 'Alojamiento y barrios'],
   ['🍽️', 'Capítulo 3', 'Comida y restaurantes'],
   ['📋', 'Capítulo 4', 'Trámites y burocracia'],

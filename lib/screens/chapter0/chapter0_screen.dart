@@ -1,25 +1,24 @@
 // lib/screens/chapter0/chapter0_screen.dart
-import '../../data/chapters_repository.dart';
+import '../../data/general_data/chapters_repository.dart';
 import '../../themes/app_colors.dart';
 import 'package:flutter/material.dart';
-import '../../widgets/section_header.dart';
-import '../../widgets/quiz_card.dart';
+import '../../widgets/general_widgets/section_header.dart';
+import '../../widgets/general_widgets/quiz_card.dart';
 import '../../widgets/chapter0/chapter0_widgets.dart'; // todos los demás widgets
 import '../../data/chapter0/chapter0_data.dart';
 import '../../data/chapter0/chapter0_quizzes.dart';
 import '../../models/chapter_model.dart';
-import '../../widgets/next_chapter_button.dart';
+import '../../widgets/general_widgets/next_chapter_button.dart';
 
 class Chapter0Screen extends StatelessWidget {
   final Chapter chapter;
 
   const Chapter0Screen({super.key, required this.chapter});
 
-  double _getImageHeight(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    if (width >= 1200) return 320; // Escritorio grande
-    if (width >= 800) return 280; // Escritorio pequeño / tablet horizontal
-    if (width >= 600) return 240; // Tablet vertical / móvil grande
+  double _getImageHeight(double availableWidth) {
+    if (availableWidth >= 1200) return 320; // Escritorio grande
+    if (availableWidth >= 800) return 280; // Escritorio pequeño / tablet horizontal
+    if (availableWidth >= 600) return 240; // Tablet vertical / móvil grande
     return 200; // Móvil pequeño
   }  
 
@@ -66,16 +65,21 @@ class Chapter0Screen extends StatelessWidget {
               const SizedBox(height: 16),
 
               // ── FOTO 1: Panorámica de Moscú ──
-              ClipRRect(
-                borderRadius: BorderRadius.circular(14),
-                child: Image.asset(
-                  'assets/images/chapter0/intro_moscow_panorama.jpg',
-                  height: _getImageHeight(context),
-                  width: double.infinity,
-                  fit: BoxFit.cover, // Ajusta la imagen para cubrir el espacio sin deformarse
-                  cacheWidth: (MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio).round(),
-                  cacheHeight: (_getImageHeight(context) * MediaQuery.of(context).devicePixelRatio).round(),  
-                ),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final imageHeight = _getImageHeight(constraints.maxWidth);
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(14),
+                    child: Image.asset(
+                      'assets/images/chapter0/chapter0_moscow_panorama.jpg',
+                      height: imageHeight,
+                      width: double.infinity,
+                      fit: BoxFit.cover, // Ajusta la imagen para cubrir el espacio sin deformarse
+                      cacheWidth: (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round(),
+                      cacheHeight: (imageHeight * MediaQuery.of(context).devicePixelRatio).round(),  
+                    ),
+                  );
+                },
               ),
 
               // ── SECCIÓN 1: BIENVENIDA ──
@@ -99,17 +103,21 @@ class Chapter0Screen extends StatelessWidget {
               const SizedBox(height: 24),
 
               // ── FOTO 2: Metro de Moscú ──
-              
-              ClipRRect(
-                borderRadius: BorderRadius.circular(14),
-                child: Image.asset(
-                  'assets/images/chapter0/intro_moscow_metro.jpg',
-                  height: _getImageHeight(context),
-                  width: double.infinity,
-                  fit: BoxFit.cover, // Ajusta la imagen para cubrir el espacio sin deformarse
-                  cacheWidth: (MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio).round(),
-                  cacheHeight: (_getImageHeight(context) * MediaQuery.of(context).devicePixelRatio).round(),  
-                ),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final imageHeight = _getImageHeight(constraints.maxWidth);
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(14),
+                    child: Image.asset(
+                      'assets/images/chapter0/chapter0_moscow_metro.jpg',
+                      height: imageHeight,
+                      width: double.infinity,
+                      fit: BoxFit.cover, // Ajusta la imagen para cubrir el espacio sin deformarse
+                      cacheWidth: (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round(),
+                      cacheHeight: (imageHeight * MediaQuery.of(context).devicePixelRatio).round(),  
+                    ),
+                  );
+                },
               ),
 
               // ── SECCIÓN 3: MITOS ──
@@ -121,16 +129,21 @@ class Chapter0Screen extends StatelessWidget {
               const SizedBox(height: 24),
 
               // ── FOTO 3: Invierno ruso ──
-              ClipRRect(
-                borderRadius: BorderRadius.circular(14),
-                child: Image.asset(
-                  'assets/images/chapter0/intro_russian_winter.jpg',
-                  height: _getImageHeight(context),
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  cacheWidth: (MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio).round(),
-                  cacheHeight: (_getImageHeight(context) * MediaQuery.of(context).devicePixelRatio).round(),  
-                ),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final imageHeight = _getImageHeight(constraints.maxWidth);
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(14),
+                    child: Image.asset(
+                      'assets/images/chapter0/chapter0_russian_winter.jpg',
+                      height: imageHeight,
+                      width: double.infinity,
+                      fit: BoxFit.cover, // Ajusta la imagen para cubrir el espacio sin deformarse
+                      cacheWidth: (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round(),
+                      cacheHeight: (imageHeight * MediaQuery.of(context).devicePixelRatio).round(),  
+                    ),
+                  );
+                },
               ),
 
               // ── SECCIÓN 4: IDIOMA ──
@@ -142,16 +155,21 @@ class Chapter0Screen extends StatelessWidget {
               const SizedBox(height: 24),
 
               // ── FOTO 4: Letreros en cirílico ──
-              ClipRRect(
-                borderRadius: BorderRadius.circular(14),
-                child: Image.asset(
-                  'assets/images/chapter0/intro_cyrillic_signs.jpg',
-                  height:  _getImageHeight(context),
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  cacheWidth: (MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio).round(),
-                  cacheHeight: (_getImageHeight(context) * MediaQuery.of(context).devicePixelRatio).round(),  
-                ),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final imageHeight = _getImageHeight(constraints.maxWidth);
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(14),
+                    child: Image.asset(
+                      'assets/images/chapter0/chapter0_cyrillic_signs.jpg',
+                      height: imageHeight,
+                      width: double.infinity,
+                      fit: BoxFit.cover, // Ajusta la imagen para cubrir el espacio sin deformarse
+                      cacheWidth: (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round(),
+                      cacheHeight: (imageHeight * MediaQuery.of(context).devicePixelRatio).round(),  
+                    ),
+                  );
+                },
               ),
 
               // ── QUIZZES 2, 3, 4a/4b, 5 ──
@@ -175,16 +193,21 @@ class Chapter0Screen extends StatelessWidget {
               const SizedBox(height: 24),
 
               // ── FOTO 6: Noches blancas de San Petersburgo ──
-              ClipRRect(
-                borderRadius: BorderRadius.circular(14),
-                child: Image.asset(
-                  'assets/images/chapter0/intro_white_nights.jpg',
-                  height: _getImageHeight(context),
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  cacheWidth: (MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio).round(),
-                  cacheHeight: (_getImageHeight(context) * MediaQuery.of(context).devicePixelRatio).round(),  
-                ),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final imageHeight = _getImageHeight(constraints.maxWidth);
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(14),
+                    child: Image.asset(
+                      'assets/images/chapter0/chapter0_white_nights.jpg',
+                      height: imageHeight,
+                      width: double.infinity,
+                      fit: BoxFit.cover, // Ajusta la imagen para cubrir el espacio sin deformarse
+                      cacheWidth: (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round(),
+                      cacheHeight: (imageHeight * MediaQuery.of(context).devicePixelRatio).round(),  
+                    ),
+                  );
+                },
               ),
 
               // ── SECCIÓN 6: CÓMO USAR LA GUÍA ──

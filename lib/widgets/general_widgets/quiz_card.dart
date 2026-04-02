@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/quiz_model.dart';
+import '../../models/quiz_model.dart';
 import 'fill_in_blank_input.dart';
 
 class QuizCard extends StatefulWidget {

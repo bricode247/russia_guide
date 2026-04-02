@@ -2,29 +2,28 @@
 import 'package:flutter/material.dart';
 import '../../data/chapter1/chapter1_data.dart';
 import '../../data/chapter1/chapter1_quizzes.dart';
-import '../../widgets/quiz_card.dart'; // Nuestro quiz card
-import '../../widgets/section_header.dart'; // Nuestro header de sección
+import '../../widgets/general_widgets/quiz_card.dart'; // Nuestro quiz card
+import '../../widgets/general_widgets/section_header.dart'; // Nuestro header de sección
 import '../../widgets/chapter1/season_card.dart';
 import '../../widgets/chapter1/visa_type_card.dart';
 import '../../widgets/chapter1/process_step.dart';
 import '../../widgets/chapter1/three_layers_widget.dart';
 import '../../widgets/chapter1/checklist_section.dart';
-import '../../data/chapters_repository.dart';
+import '../../data/general_data/chapters_repository.dart';
 import '../../themes/app_colors.dart';
 import '../../models/chapter_model.dart';
-import '../../widgets/next_chapter_button.dart';
+import '../../widgets/general_widgets/next_chapter_button.dart';
 
 class Chapter1Screen extends StatelessWidget {
   final Chapter chapter;
   const Chapter1Screen({super.key, required this.chapter});
 
-  double _getImageHeight(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    if (width >= 1200) return 320; // Escritorio grande
-    if (width >= 800) return 280; // Escritorio pequeño / tablet horizontal
-    if (width >= 600) return 240; // Tablet vertical / móvil grande
-    return 200; // Móvil pequeño
-  }  
+  double _getImageHeight(double availableWidth) {
+    if (availableWidth >= 1200) return 320;
+    if (availableWidth >= 800) return 280;
+    if (availableWidth >= 600) return 240;
+    return 200;
+  } 
 
   @override
   Widget build(BuildContext context) {
@@ -69,16 +68,21 @@ class Chapter1Screen extends StatelessWidget {
               const SizedBox(height: 20),
  
               // ── FOTO 1: Panorámica invernal de Moscú / San Petersburgo ──
-              ClipRRect(
-                borderRadius: BorderRadius.circular(14),
-                child: Image.asset(
-                  'assets/images/chapter1/winter_panorama.jpg',
-                  height: _getImageHeight(context),
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  cacheWidth: (MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio).round(),
-                  cacheHeight: (_getImageHeight(context) * MediaQuery.of(context).devicePixelRatio).round(),
-                ),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final imageHeight = _getImageHeight(constraints.maxWidth);
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(14),
+                    child: Image.asset(
+                      'assets/images/chapter1/winter_panorama.jpg', // tu ruta
+                      height: imageHeight,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      cacheWidth: (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round(),
+                      cacheHeight: (imageHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                    ),
+                  );
+                },
               ),
 
               // Sección 1: Introducción
@@ -92,16 +96,21 @@ class Chapter1Screen extends StatelessWidget {
               const SizedBox(height: 24),
 
               // ── FOTO 2: Noches Blancas de San Petersburgo ──
-              ClipRRect(
-                borderRadius: BorderRadius.circular(14),
-                child: Image.asset(
-                  'assets/images/chapter1/white_nights_spb.jpg',
-                  height: _getImageHeight(context),
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  cacheWidth: (MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio).round(),
-                  cacheHeight: (_getImageHeight(context) * MediaQuery.of(context).devicePixelRatio).round(),
-                ),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final imageHeight = _getImageHeight(constraints.maxWidth);
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(14),
+                    child: Image.asset(
+                      'assets/images/chapter1/white_nights_spb.jpg', // tu ruta
+                      height: imageHeight,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      cacheWidth: (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round(),
+                      cacheHeight: (imageHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                    ),
+                  );
+                },
               ),
 
               // Quiz 1: Invierno
@@ -114,16 +123,21 @@ class Chapter1Screen extends StatelessWidget {
               const SizedBox(height: 24),
 
               // ── FOTO 3: Consulado / Embajada rusa ──
-              ClipRRect(
-                borderRadius: BorderRadius.circular(14),
-                child: Image.asset(
-                  'assets/images/chapter1/passport.jpg',
-                  height: _getImageHeight(context),
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  cacheWidth: (MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio).round(),
-                  cacheHeight: (_getImageHeight(context) * MediaQuery.of(context).devicePixelRatio).round(),
-                ),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final imageHeight = _getImageHeight(constraints.maxWidth);
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(14),
+                    child: Image.asset(
+                      'assets/images/chapter1/passport.jpg', // tu ruta
+                      height: imageHeight,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      cacheWidth: (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round(),
+                      cacheHeight: (imageHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                    ),
+                  );
+                },
               ),
 
               // ── QUIZ 2: PASAPORTE ──
@@ -164,17 +178,22 @@ class Chapter1Screen extends StatelessWidget {
               const SizedBox(height: 24),
 
               // Foto 4: Ropa de invierno
-              ClipRRect(
-                borderRadius: BorderRadius.circular(14),
-                child: Image.asset(
-                  'assets/images/chapter1/winter_clothing.jpg',
-                  height: _getImageHeight(context),
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  cacheWidth: (MediaQuery.of(context).size.width * MediaQuery.of(context).devicePixelRatio).round(),
-                  cacheHeight: (_getImageHeight(context) * MediaQuery.of(context).devicePixelRatio).round(),
-                ),
-             ),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final imageHeight = _getImageHeight(constraints.maxWidth);
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(14),
+                    child: Image.asset(
+                      'assets/images/chapter1/winter_clothing.jpg', // tu ruta
+                      height: imageHeight,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      cacheWidth: (constraints.maxWidth * MediaQuery.of(context).devicePixelRatio).round(),
+                      cacheHeight: (imageHeight * MediaQuery.of(context).devicePixelRatio).round(),
+                    ),
+                  );
+                },
+              ),
 
                // Sección 9: Checklist final
               SectionHeader(title: 'Checklist final: ¿listo para salir?', emoji: '✅'),

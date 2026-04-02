@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../models/chapter_model.dart';
-import '../screens/chapter0/chapter0_screen.dart';
-import '../screens/chapter1/chapter1_screen.dart';
+import '../../models/chapter_model.dart';
+import '../../screens/chapter0/chapter0_screen.dart';
+import '../../screens/chapter1/chapter1_screen.dart';
 
 class ChaptersRepository {
   // Lista única de capítulos
