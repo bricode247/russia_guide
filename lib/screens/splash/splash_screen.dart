@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../themes/app_colors.dart';
-import '../home/home_screen.dart'; // Importamos la pantalla de destino
+import 'package:video_player/video_player.dart';
+import '../home/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -10,54 +10,59 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  late VideoPlayerController _controller;
+  bool _isVideoInitialized = false;
+
   @override
   void initState() {
     super.initState();
-    // Temporizador de 2.5 segundos para navegar a HomeScreen
-    Future.delayed(const Duration(milliseconds: 2500), () {
-      // Verificamos si el widget sigue montado antes de navegar
-      if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
-        );
-      }
-    });
+    _controller = VideoPlayerController.asset('assets/videos/intro.mp4')
+      ..initialize().then((_) {
+        setState(() {
+          _isVideoInitialized = true;
+        });
+        // Silenciar para permitir autoplay en navegadores
+        _controller.setVolume(0.0);
+        _controller.play();
+        // Navegar cuando termine el video
+        _controller.addListener(() {
+          if (_controller.value.position == _controller.value.duration) {
+            _navigateToHome();
+          }
+        });
+      });
+  }
+
+  void _navigateToHome() {
+    if (mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.blanco,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.menu_book,
-              size: 100,
-              color: AppColors.azulPrimario,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'РОССИЯ ГАЙД',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: AppColors.azulOscuro,
+      body: _isVideoInitialized
+          ? SizedBox.expand(
+              child: FittedBox(
+                fit: BoxFit.cover,
+                child: SizedBox(
+                  width: _controller.value.size.width,
+                  height: _controller.value.size.height,
+                  child: VideoPlayer(_controller),
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Tu guía para vivir en Rusia',
-              style: TextStyle(
-                fontSize: 14,
-                color: AppColors.grisMedio,
-              ),
-            ),
-          ],
-        ),
-      ),
+            )
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../models/quiz_model.dart';
-import 'fill_in_blank_input.dart';
+import 'package:russia_guide/models/quiz_model.dart';
 
 class QuizCard extends StatefulWidget {
   final QuizData quiz;
@@ -12,63 +11,16 @@ class QuizCard extends StatefulWidget {
 }
 
 class _QuizCardState extends State<QuizCard> {
-  final TextEditingController _ctrl = TextEditingController();
   bool _revealed = false;
-  String _userInput = '';
-  Color? _borderColor;
+  String? _selectedOption;
+  bool _isCorrect = false;
 
-  // Genera la pista con guiones bajos según la longitud de la respuesta
-  String get _hint {
-  final answer = widget.quiz.answer;
-  return '_' * answer.length;
-  }
-
-  bool get _isCorrect {
-    // Comparar solo con la respuesta en cirílico, sin transliteración
-    final input = _userInput.trim().toLowerCase();
-    return input == widget.quiz.answer.toLowerCase();
-  }
-
-  bool get _isFilled {
-    // Si la cadena aún contiene guiones bajos, no está completamente rellenada
-    return !_userInput.contains('_');
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _ctrl.addListener(_onInputChange);
-  }
-
-  void _onInputChange() {
-    // No se necesita acción aquí porque FillInBlankInput llama a onChanged
-  }
-
-  void _onUserInputChanged(String value) {
+  void _checkAnswer(String option) {
     setState(() {
-      _userInput = value;
-
-      // Determinar color del borde
-      if (_isFilled) {
-        if (_isCorrect) {
-          _borderColor = Colors.green;
-          // Auto-revelar si es correcto
-          if (!_revealed) {
-            _revealed = true;
-          }
-        } else {
-          _borderColor = Colors.red;
-        }
-      } else {
-        _borderColor = null; // color por defecto
-      }
+      _selectedOption = option;
+      _isCorrect = option == widget.quiz.correctAnswer;
+      _revealed = true;
     });
-  }
-
-  @override
-  void dispose() {
-    _ctrl.dispose();
-    super.dispose();
   }
 
   @override
@@ -114,86 +66,72 @@ class _QuizCardState extends State<QuizCard> {
               height: 1.4,
             ),
           ),
-          const SizedBox(height: 12),
-          // Campo de entrada con pista de guiones
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: FillInBlankInput(
-                  hint: _hint,
-                  answer: widget.quiz.answer,
-                  onChanged: _onUserInputChanged,
-                  controller: _ctrl,
-                  borderColor: _borderColor,
-                ),
-              ),
-              const SizedBox(width: 10),
-              TextButton(
-                onPressed: () => setState(() => _revealed = true),
-                style: TextButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-                  backgroundColor: Colors.white,
+          const SizedBox(height: 16),
+          // Opciones (tres botones)
+          ...widget.quiz.options.map((option) {
+            bool isSelected = _selectedOption == option;
+            bool isCorrectOption = option == widget.quiz.correctAnswer;
+            Color? buttonColor;
+            if (_revealed && isSelected) {
+              buttonColor = isCorrectOption ? Colors.green : Colors.red;
+            } else if (_revealed && !isSelected && isCorrectOption) {
+              buttonColor = Colors.green; // mostrar la correcta aunque no la haya elegido
+            } else {
+              buttonColor = const Color(0xFFE0E0E0);
+            }
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: ElevatedButton(
+                onPressed: _revealed ? null : () => _checkAnswer(option),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: buttonColor,
+                  foregroundColor: Colors.black87,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
-                    side: const BorderSide(color: Color(0xFFD6D1C4)),
                   ),
                 ),
-                child: const Text(
-                  'Revelar',
-                  style: TextStyle(fontSize: 13, color: Color(0xFF5F5E5A)),
+                child: Text(
+                  option,
+                  style: const TextStyle(fontSize: 14),
                 ),
               ),
-            ],
-          ),
-          // Texto informativo
-          Padding(
-            padding: const EdgeInsets.only(top: 8),
-            child: Text(
-              'Escribe en ruso (cirílico) – no se acepta transliteración',
-              style: TextStyle(fontSize: 12, color: Colors.grey[600]),
-            ),
-          ),
-          // Respuesta revelada
-          if (_revealed || (_userInput.isNotEmpty && _isFilled && _isCorrect))
-            Padding(
-              padding: const EdgeInsets.only(top: 14),
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: _isCorrect
-                      ? const Color(0xFFEAF3DE)
-                      : const Color(0xFFE8E4D9),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: _isCorrect
-                        ? const Color(0xFF97C459)
-                        : const Color(0xFFD6D1C4),
+            );
+          }),
+          const SizedBox(height: 8),
+          // Explicación (solo si se ha respondido)
+          if (_revealed)
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                color: _isCorrect ? const Color(0xFFEAF3DE) : const Color(0xFFFFF0F0),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: _isCorrect ? const Color(0xFF97C459) : const Color(0xFFFFC0C0),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    _isCorrect ? '✅ ¡Correcto!' : '❌ Incorrecto',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: _isCorrect ? const Color(0xFF3B6D11) : const Color(0xFFD32F2F),
+                    ),
                   ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.quiz.answer,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xFF3B6D11),
-                      ),
+                  const SizedBox(height: 8),
+                  Text(
+                    widget.quiz.explanation,
+                    style: const TextStyle(
+                      fontSize: 13,
+                      color: Color(0xFF5F5E5A),
+                      height: 1.5,
                     ),
-                    const SizedBox(height: 6),
-                    Text(
-                      widget.quiz.explanation,
-                      style: const TextStyle(
-                        fontSize: 13,
-                        color: Color(0xFF5F5E5A),
-                        height: 1.5,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
         ],

@@ -1,15 +1,13 @@
 class QuizData {
   final String question;
-  final String hint;
-  final String answer;
-  final String transliteration;
+  final String correctAnswer;
+  final List<String> options; // Tres opciones, una es la correcta
   final String explanation;
 
   const QuizData({
     required this.question,
-    required this.hint,
-    required this.answer,
-    required this.transliteration,
+    required this.correctAnswer,
+    required this.options,
     required this.explanation,
   });
 }
