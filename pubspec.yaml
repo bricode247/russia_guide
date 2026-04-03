@@ -57,6 +57,7 @@ flutter:
   assets:
     - assets/images/chapter0/
     - assets/images/chapter1/
+    - assets/images/chapter2/
     - assets/videos/intro.mp4
 
   # The following line ensures that the Material Icons font is

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../models/chapter_model.dart';
 import '../../screens/chapter0/chapter0_screen.dart';
 import '../../screens/chapter1/chapter1_screen.dart';
+import '../../screens/chapter2/chapter2_screen.dart';
 
 class ChaptersRepository {
   // Lista única de capítulos
@@ -22,6 +23,14 @@ class ChaptersRepository {
       totalPages: 1,
       progress: 0.0,
     ),
+    Chapter(
+      id: 2,
+      number: 2,
+      title: 'Aeropuerto de salida',
+      description: 'Desde que llegas hasta que abordas',
+      totalPages: 1,
+      progress: 0.0,
+    ),
   ];
 
   // Obtener todos los capítulos
@@ -34,8 +43,9 @@ class ChaptersRepository {
         return Chapter0Screen(chapter: chapter);
       case 1:
         return Chapter1Screen(chapter: chapter);
+      case 2:
+        return Chapter2Screen(chapter: chapter);  
       default:
-        // Fallback seguro (no debería ocurrir)
         return const SizedBox();
     }
   }
