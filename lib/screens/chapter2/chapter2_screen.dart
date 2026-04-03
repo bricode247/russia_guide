@@ -574,7 +574,7 @@ class _Chapter2ClosingCard extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            'Ahora solo hay que llegar. En el Capítulo 3 te esperamos con todo lo que pasa al aterrizar en suelo ruso.',
+            'Ahora solo hay que llegar. En el Capítulo 3 te esperamos con todo lo que pasa estando en el avión.',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 15,
