@@ -81,19 +81,22 @@ class _QuizCardState extends State<QuizCard> {
             }
             return Padding(
               padding: const EdgeInsets.only(bottom: 12),
-              child: ElevatedButton(
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: ElevatedButton(
                 onPressed: _revealed ? null : () => _checkAnswer(option),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: buttonColor,
                   foregroundColor: Colors.black87,
-                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(10), 
                   ),
                 ),
                 child: Text(
                   option,
                   style: const TextStyle(fontSize: 14),
+                ),
                 ),
               ),
             );
