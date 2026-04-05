@@ -35,7 +35,7 @@ const List<List<String>> ch3BeforeTakeoffSteps = [
       'y pastillas. Nunca bloquees el espacio bajo tu propio asiento — es para '
       'el pasajero de atrás.'],
   ['3', 'Modo avión y cinturón', 'Activa el modo avión antes de que la '
-      'tripulación lo indique. Abróchat el cinturón visible sobre la manta — '
+      'tripulación lo indique. Abróchate el cinturón visible sobre la manta — '
       'así el personal no te despertará si hay turbulencia nocturna. La regla '
       'básica: cinturón puesto siempre que estés sentado.'],
   ['4', 'Escucha las instrucciones de seguridad', 'Aunque no sea tu primer '
