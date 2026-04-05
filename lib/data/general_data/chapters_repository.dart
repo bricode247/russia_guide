@@ -3,6 +3,7 @@ import '../../models/chapter_model.dart';
 import '../../screens/chapter0/chapter0_screen.dart';
 import '../../screens/chapter1/chapter1_screen.dart';
 import '../../screens/chapter2/chapter2_screen.dart';
+import '../../screens/chapter3/chapter3_screen.dart';
 
 class ChaptersRepository {
   // Lista única de capítulos
@@ -31,6 +32,14 @@ class ChaptersRepository {
       totalPages: 1,
       progress: 0.0,
     ),
+    Chapter(
+      id: 3,
+      number: 3,
+      title: 'El vuelo',
+      description: 'Desde que abordas hasta que aterrizas',
+      totalPages: 1,
+      progress: 0.0,
+    ),
   ];
 
   // Obtener todos los capítulos
@@ -44,7 +53,9 @@ class ChaptersRepository {
       case 1:
         return Chapter1Screen(chapter: chapter);
       case 2:
-        return Chapter2Screen(chapter: chapter);  
+        return Chapter2Screen(chapter: chapter);
+      case 3:
+        return Chapter3Screen(chapter: chapter);  
       default:
         return const SizedBox();
     }
