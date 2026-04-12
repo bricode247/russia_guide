@@ -6,7 +6,7 @@ import 'package:russia_guide/screens/chapter1/chapter1_screen.dart';
 import 'package:russia_guide/screens/chapter2/chapter2_screen.dart';
 import 'package:russia_guide/screens/chapter3/chapter3_screen.dart';
 import 'package:russia_guide/screens/chapter4/chapter4_screen.dart';
-
+import 'package:russia_guide/screens/chapter5/chapter5_screen.dart';
 class ChaptersRepository {
   static final List<Chapter> _chapters = [
     Chapter(
@@ -49,6 +49,14 @@ class ChaptersRepository {
       totalPages: 1,
       progress: 0.0,
     ),
+    Chapter(
+      id: 5,
+      number: 5,
+      title: 'Conectividad inmediata',
+      description: 'Desde localizar tu SIM card hasta tenerla funcionando en tu teléfono',
+      totalPages: 1,
+      progress: 0.0,
+    ),
   ];
 
   static List<Chapter> getAll() => _chapters;
@@ -65,6 +73,8 @@ class ChaptersRepository {
         return Chapter3Screen(chapter: chapter);
       case 4:
         return Chapter4Screen(chapter: chapter);
+      case 5:
+        return Chapter5Screen(chapter: chapter);  
       default:
         return const SizedBox();
     }
